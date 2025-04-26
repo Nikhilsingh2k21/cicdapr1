@@ -4,22 +4,26 @@ pipeline {
     stages {
        
 
-        stage('Build') {
+        stage('run front end') {
             steps {
-                sh 'echo "Building the application"'
+                echo "executing yarn"
+                node.js(Node-23.11.0){
+                   sh 'echo "Building the application"'
             }
+        }
         }
 
         stage('Test') {
             steps {
-                sh 'echo "Running tests"'
+                echo "executing gradle..."
+                withGradle()
+                
+                    sh './gradlew-v'
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying application"'
-            }
+     
+            
         }
     }
 }
